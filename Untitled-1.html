@@ -1,6 +1,401 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Parma — work for work</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@400;600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --terrace-dark:#2F4B3C;
+    --terrace-mid:#5C7A5A;
+    --mustard:#D9A441;
+    --clay:#A8562E;
+    --rice-paper:#F3EFE4;
+    --ink:#26261F;
+    --line:rgba(38,38,31,0.14);
+    --radius-card: 4px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--rice-paper);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    line-height:1.5;
+  }
+  h1,h2,h3{
+    font-family:'Zilla Slab', serif;
+    margin:0;
+    font-weight:700;
+    letter-spacing:-0.01em;
+  }
+  p{margin:0;}
+  img,svg{display:block; max-width:100%;}
+  a{color:inherit;}
+
+  .wrap{
+    max-width:960px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+
+  /* Header */
+  header{
+    padding:28px 0 0;
+  }
+  .brandbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding-bottom:24px;
+    border-bottom:1px solid var(--line);
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-family:'Zilla Slab', serif;
+    font-weight:700;
+    font-size:1.3rem;
+  }
+  .brand-mark{
+    width:26px; height:26px;
+  }
+  nav a{
+    text-decoration:none;
+    font-size:0.95rem;
+    color:var(--terrace-dark);
+    font-weight:500;
+  }
+
+  /* Hero */
+  .hero{
+    padding:64px 0 40px;
+    display:grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap:48px;
+    align-items:center;
+  }
+  .hero h1{
+    font-size:2.6rem;
+    line-height:1.12;
+    color:var(--terrace-dark);
+  }
+  .hero .sub{
+    margin-top:18px;
+    font-size:1.08rem;
+    max-width:46ch;
+    color:#3c3c33;
+  }
+  .hero .cta-row{
+    margin-top:30px;
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+  }
+  .btn{
+    display:inline-block;
+    padding:12px 22px;
+    border-radius:var(--radius-card);
+    font-weight:600;
+    font-size:0.95rem;
+    text-decoration:none;
+    cursor:pointer;
+    border:1px solid transparent;
+  }
+  .btn-primary{
+    background:var(--terrace-dark);
+    color:var(--rice-paper);
+  }
+  .btn-ghost{
+    background:transparent;
+    color:var(--terrace-dark);
+    border-color:var(--terrace-dark);
+  }
+
+  /* Terrace SVG illustration */
+  .terrace-art{
+    width:100%;
+    height:auto;
+  }
+
+  /* Meaning strip */
+  .meaning{
+    padding:36px 0;
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .meaning p{
+    font-size:1.02rem;
+    max-width:64ch;
+    color:#3c3c33;
+  }
+  .meaning strong{
+    color:var(--clay);
+    font-weight:600;
+  }
+
+  /* Steps section — terrace-step layout, since the flow really is sequential */
+  .steps{
+    padding:64px 0;
+  }
+  .steps h2{
+    font-size:1.9rem;
+    color:var(--terrace-dark);
+    margin-bottom:36px;
+  }
+  .step-terrace{
+    display:flex;
+    flex-direction:column;
+    gap:0;
+  }
+  .step{
+    display:grid;
+    grid-template-columns: 64px 1fr;
+    gap:20px;
+    padding:22px 0;
+    border-top:1px solid var(--line);
+  }
+  .step:last-child{border-bottom:1px solid var(--line);}
+  .step-index{
+    font-family:'Zilla Slab', serif;
+    font-size:1.6rem;
+    color:var(--mustard);
+    font-weight:700;
+  }
+  .step h3{
+    font-size:1.15rem;
+    color:var(--ink);
+    margin-bottom:6px;
+  }
+  .step p{
+    color:#4a4a40;
+    max-width:56ch;
+    font-size:0.98rem;
+  }
+  /* visually stagger the steps like terrace levels, on wide screens */
+  .step:nth-child(1){margin-left:0;}
+  .step:nth-child(2){margin-left:28px;}
+  .step:nth-child(3){margin-left:56px;}
+
+  /* Ledger / phone mockup section */
+  .ledger-section{
+    padding:20px 0 72px;
+    display:grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap:56px;
+    align-items:center;
+  }
+  .ledger-copy h2{
+    font-size:1.9rem;
+    color:var(--terrace-dark);
+    margin-bottom:16px;
+  }
+  .ledger-copy p{
+    color:#3c3c33;
+    max-width:44ch;
+    margin-bottom:14px;
+  }
+
+  .phone{
+    background:var(--ink);
+    border-radius:28px;
+    padding:14px;
+    width:280px;
+    margin:0 auto;
+    box-shadow: 0 18px 40px rgba(38,38,31,0.25);
+  }
+  .phone-screen{
+    background:var(--rice-paper);
+    border-radius:18px;
+    overflow:hidden;
+  }
+  .phone-header{
+    background:var(--terrace-dark);
+    color:var(--rice-paper);
+    padding:18px 16px 14px;
+  }
+  .phone-header .place{
+    font-size:0.78rem;
+    opacity:0.75;
+    margin-bottom:2px;
+  }
+  .phone-header .title{
+    font-family:'Zilla Slab', serif;
+    font-size:1.15rem;
+    font-weight:700;
+  }
+  .entry{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:10px;
+    padding:14px 16px;
+    border-bottom:1px solid var(--line);
+  }
+  .entry:last-child{border-bottom:none;}
+  .entry-name{
+    font-weight:600;
+    font-size:0.92rem;
+  }
+  .entry-note{
+    font-size:0.8rem;
+    color:#6a6a5e;
+    margin-top:2px;
+  }
+  .entry-days{
+    font-size:0.88rem;
+    font-weight:600;
+    white-space:nowrap;
+  }
+  .owe-you{color:var(--terrace-dark);}
+  .you-owe{color:var(--clay);}
+
+  /* Footer */
+  footer{
+    border-top:1px solid var(--line);
+    padding:28px 0 40px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:12px;
+  }
+  footer p{
+    font-size:0.88rem;
+    color:#6a6a5e;
+  }
+
+  @media (max-width: 760px){
+    .hero{grid-template-columns:1fr; padding-top:40px;}
+    .hero h1{font-size:2.05rem;}
+    .ledger-section{grid-template-columns:1fr;}
+    .step:nth-child(2){margin-left:14px;}
+    .step:nth-child(3){margin-left:28px;}
+  }
+
+  :focus-visible{
+    outline:2px solid var(--clay);
+    outline-offset:2px;
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+  }
+</style>
+</head>
 <body>
-<h1>Hello World!</h1>
+
+<header>
+  <div class="wrap brandbar">
+    <div class="brand">
+      <svg class="brand-mark" viewBox="0 0 24 24" fill="none">
+        <path d="M2 18 L8 10 L13 14 L22 4" stroke="#2F4B3C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="22" cy="4" r="2" fill="#D9A441"/>
+      </svg>
+      parma
+    </div>
+    <nav><a href="#how">how it works</a></nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero wrap">
+    <div>
+      <h1>A day of your work, for a day of theirs.</h1>
+      <p class="sub">Parma is how villages across Nepal have always shared labor — planting, harvesting, roofing — without money changing hands. This app just keeps the tally, so the exchange stays fair even months later.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#how">See how it works</a>
+        <a class="btn btn-ghost" href="#ledger">Open the ledger</a>
+      </div>
+    </div>
+    <svg class="terrace-art" viewBox="0 0 400 300" fill="none">
+      <path d="M0 260 L400 260 L400 300 L0 300 Z" fill="#8B6B3D"/>
+      <path d="M0 230 L400 210 L400 260 L0 260 Z" fill="#5C7A5A"/>
+      <path d="M0 195 L400 165 L400 210 L0 230 Z" fill="#4C6B4A"/>
+      <path d="M0 160 L400 120 L400 165 L0 195 Z" fill="#3D5E3E"/>
+      <path d="M0 125 L400 75 L400 120 L0 160 Z" fill="#2F4B3C"/>
+      <circle cx="330" cy="60" r="26" fill="#D9A441"/>
+    </svg>
+  </section>
+
+  <section class="meaning wrap">
+    <p><strong>Parma</strong> — a Nepali tradition of reciprocal labor exchange, common in farming villages, where neighbors take turns working each other's fields, roofs, or houses instead of paying wages.</p>
+  </section>
+
+  <section class="steps wrap" id="how">
+    <h2>How an exchange happens</h2>
+    <div class="step-terrace">
+      <div class="step">
+        <span class="step-index">1</span>
+        <div>
+          <h3>Post what you need</h3>
+          <p>"Planting maize, need 3 people, one day, next Tuesday." Anyone nearby can see it.</p>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-index">2</span>
+        <div>
+          <h3>Neighbors offer their day</h3>
+          <p>People who can help mark themselves in. No payment is discussed — the work itself is the currency.</p>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-index">3</span>
+        <div>
+          <h3>The ledger remembers</h3>
+          <p>Every day given or received is logged, so favors don't get forgotten — and nobody keeps quietly score in their head.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ledger-section wrap" id="ledger">
+    <div class="ledger-copy">
+      <h2>Your balance, at a glance</h2>
+      <p>Every household has a running ledger — days owed, and days still to give back. No numbers, no money. Just work, honestly tracked.</p>
+      <p>Entries are added by whoever showed up, and confirmed by the household that was helped.</p>
+    </div>
+    <div class="phone">
+      <div class="phone-screen">
+        <div class="phone-header">
+          <div class="place">Deurali, Kavre</div>
+          <div class="title">Your ledger</div>
+        </div>
+        <div class="entry">
+          <div>
+            <div class="entry-name">Ram Krishna's house</div>
+            <div class="entry-note">helped with roof thatching</div>
+          </div>
+          <div class="entry-days owe-you">owes you 1 day</div>
+        </div>
+        <div class="entry">
+          <div>
+            <div class="entry-name">Sita's house</div>
+            <div class="entry-note">you helped with rice harvest</div>
+          </div>
+          <div class="entry-days you-owe">you owe 2 days</div>
+        </div>
+        <div class="entry">
+          <div>
+            <div class="entry-name">Nitin's house</div>
+            <div class="entry-note">maize planting, shared</div>
+          </div>
+          <div class="entry-days owe-you">owes you 1 day</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap">
+  <p>Parma — built for the terraces of Nepal.</p>
+  <p>Concept template</p>
+</footer>
+
 </body>
 </html>
