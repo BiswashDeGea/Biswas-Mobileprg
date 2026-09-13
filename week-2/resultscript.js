@@ -1,37 +1,29 @@
- function calculateResult() {
-            
-            let m1 = Number(document.getElementById("sub1").value);
-            let m2 = Number(document.getElementById("sub2").value);
-            let m3 = Number(document.getElementById("sub3").value);
-            let m4 = Number(document.getElementById("sub4").value);
-            let m5 = Number(document.getElementById("sub5").value);
+function calculate(operation) {
 
-            
-            let total = m1 + m2 + m3 + m4 + m5;
+    let m1 = Number(document.getElementById("sub1").value);
+    let m2 = Number(document.getElementById("sub2").value);
+    let m3 = Number(document.getElementById("sub3").value);
+    let m4 = Number(document.getElementById("sub4").value);
+    let m5 = Number(document.getElementById("sub5").value);
 
-            
-            let division = "";
+    let result;
+    let label;
 
-            if (total >= 600) {
-                division = "Distinction";
-            } else if (total >= 450) {
-                division = "First Division";
-            } else if (total >= 350) {
-                division = "Second Division";
-            } else if (total >= 250) {
-                division = "Third Division";
-            } else {
-                division = "Fail";
-            }
+    if (operation === "add") { 
+        result = m1 + m2 + m3 + m4 + m5;
+        label = "Sum";
+    } else if (operation === "sub") {
+        result = m1 - m2 - m3 - m4 - m5;
+        label = "Difference";
+    } else if (operation === "mul") {
+        result = m1 * m2 * m3 * m4 * m5;
+        label = "Product";
+    } else if (operation === "div") {
+        result = m1 / m2 / m3 / m4 / m5;
+        label = "Division Result";
+    }
 
-            
-            let resultBox = document.getElementById("result");
-            resultBox.innerHTML = "Total Marks: " + total + " | Result: " + division;
-
-            
-            if (division === "Fail") {
-                resultBox.style.color = "red";
-            } else {
-                resultBox.style.color = "green";
-            }
-        }
+    let resultBox = document.getElementById("result");
+    resultBox.innerHTML = label + ": " + result;
+    resultBox.style.color = "blue";
+}

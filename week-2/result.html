@@ -6,12 +6,27 @@
 <body>
 
     <h2>Enter Marks (out of 100 each)</h2>
-    <input type="number" id="sub1"><br><br>
-    <input type="number" id ="sub2"><br><br>
-    <input type="number" id="sub3"><br><br>
-    <input type="number" id ="sub4"><br><br>
-    <input type="number" id="sub5"><br><br>
-<button onclick="calculateResult()">Calculate</button>
+
+    <label for="sub1">Subj1: </label>
+    <input type="number" id="sub1" placeholder="Enter marks"><br><br>
+
+    <label for="sub2">Subj2: </label>
+    <input type="number" id="sub2" placeholder="Enter marks"><br><br>
+
+    <label for="sub3">Subj3: </label>
+    <input type="number" id="sub3" placeholder="Enter marks"><br><br>
+
+    <label for="sub4">Subj4: </label>
+    <input type="number" id="sub4" placeholder="Enter marks"><br><br>
+
+    <label for="sub5">Subj5: </label>
+    <input type="number" id="sub5" placeholder="Enter marks"><br><br>
+
+    <button onclick="calculateResult()">Calculate</button>
+    <button onclick="calculate('add')">Add</button>
+    <button onclick="calculate('sub')">Subtract</button>
+    <button onclick="calculate('mul')">Multiply</button>
+    <button onclick="calculate('div')">Divide</button>
 
     <h3 id="result"></h3>
 
@@ -19,5 +34,3 @@
 
 </body>
 </html>
-
-
